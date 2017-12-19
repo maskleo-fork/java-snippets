@@ -1,0 +1,22 @@
+{
+    "name": "Snippets",
+    "version": "1.0.0",
+    "description": "java-snippets",
+    "keywords": [
+        "java",
+        "snippets"
+    ],
+    "homepage": "http://JSLite.io",
+    "author": "maskleo",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/maskleo/java-snippets"
+    },
+    "licenses": "MIT",
+    "idoc": {
+        "theme": "handbook",
+        "md": [
+            "index.md"
+        ]
+    }
+}

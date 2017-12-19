@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snippets</title>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+</head>
+<body>
+<div class="nav">
+    <div class="logo">
+        
+            Snippets
+        
+    </div>
+<ul><li class="active"><a href="index.html">index</a></li></ul></div>
+
+
+<div class="forkgithub"><a target="_blank" href="https://github.com/maskleo/java-snippets"></a></div>
+
+<div class="warpper">
+
+    <div class="page-toc">
+        <ul><li><a href="#t0Java Snippets">Java Snippets</a><ul><li><a href="#t1How to contribute">How to contribute</a></li><li><a href="#t2Table of Contents">Table of Contents</a><ul><li><a href="#t3Array">Array</a></li><li><a href="#t4File">File</a></li><li><a href="#t5Math">Math</a></li><li><a href="#t6Media">Media</a></li><li><a href="#t7String">String</a></li></ul></li><li><a href="#t8Array">Array</a><ul><li><a href="#t9Generic two array concatenation">Generic two array concatenation</a></li><li><a href="#t10Generic N array concatenation">Generic N array concatenation</a></li></ul></li><li><a href="#t11File">File</a><ul><li><a href="#t12List directories">List directories</a></li><li><a href="#t13Read lines from file to string list">Read lines from file to string list</a></li></ul></li><li><a href="#t14Math">Math</a><ul><li><a href="#t15Fibonacci">Fibonacci</a></li><li><a href="#t16Factorial">Factorial</a></li></ul></li><li><a href="#t17Media">Media</a><ul><li><a href="#t18Capture screen">Capture screen</a></li></ul></li><li><a href="#t19String">String</a><ul><li><a href="#t20Reverse string">Reverse string</a></li><li><a href="#t21String to date">String to date</a></li></ul></li></ul></li></ul>
+    </div>
+    
+    <div class="content markdown-body">
+        <h1 id="t0Java Snippets">Java Snippets <a href="#t0Java Snippets"> # </a></h1>
+<p><a href="https://travis-ci.org/iluwatar/java-snippets"><img src="https://travis-ci.org/iluwatar/java-snippets.svg?branch=master" alt="Build status"></a></p>
+<p>Inspired by <a href="https://github.com/Chalarangelo/30-seconds-of-code">30 seconds of code</a>, this is a collection of reusable tested Java code snippets.</p>
+<h2 id="t1How to contribute">How to contribute <a href="#t1How to contribute"> # </a></h2>
+<p>Update the sample application with the snippet and add a test for it. After proving that it works update this README.md.</p>
+<h2 id="t2Table of Contents">Table of Contents <a href="#t2Table of Contents"> # </a></h2>
+<h3 id="t3Array">Array <a href="#t3Array"> # </a></h3>
+<ul>
+<li><a href="#generic-two-array-concatenation">Generic two array concatenation</a></li>
+<li><a href="#generic-N-array-concatenation">Generic N array concatenation</a></li>
+</ul>
+<h3 id="t4File">File <a href="#t4File"> # </a></h3>
+<ul>
+<li><a href="#list-directories">List directories</a></li>
+<li><a href="#read-lines-from-file-to-string-list">Read lines from file to string list</a></li>
+</ul>
+<h3 id="t5Math">Math <a href="#t5Math"> # </a></h3>
+<ul>
+<li><a href="#factorial">Factorial</a></li>
+<li><a href="#fibonacci">Fibonacci</a></li>
+</ul>
+<h3 id="t6Media">Media <a href="#t6Media"> # </a></h3>
+<ul>
+<li><a href="#capture-screen">Capture screen</a></li>
+</ul>
+<h3 id="t7String">String <a href="#t7String"> # </a></h3>
+<ul>
+<li><a href="#reverse-string">Reverse string</a></li>
+<li><a href="#string-to-date">String to date</a></li>
+</ul>
+<h2 id="t8Array">Array <a href="#t8Array"> # </a></h2>
+<h3 id="t9Generic two array concatenation">Generic two array concatenation <a href="#t9Generic two array concatenation"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T[] arrayConcat(T[] first, T[] second) {
+        T[] result = Arrays.copyOf(first, first.length + second.length);
+        System.arraycopy(second, <span class="hljs-number">0</span>, result, first.length, second.length);
+        <span class="hljs-keyword">return</span> result;
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h3 id="t10Generic N array concatenation">Generic N array concatenation <a href="#t10Generic N array concatenation"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> &lt;T&gt; T[] nArrayConcat(T[] first, T[]... rest) {
+        <span class="hljs-keyword">int</span> totalLength = first.length;
+        <span class="hljs-keyword">for</span> (T[] array : rest) {
+            totalLength += array.length;
+        }
+        T[] result = Arrays.copyOf(first, totalLength);
+        <span class="hljs-keyword">int</span> offset = first.length;
+        <span class="hljs-keyword">for</span> (T[] array : rest) {
+            System.arraycopy(array, <span class="hljs-number">0</span>, result, offset, array.length);
+            offset += array.length;
+        }
+        <span class="hljs-keyword">return</span> result;
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h2 id="t11File">File <a href="#t11File"> # </a></h2>
+<h3 id="t12List directories">List directories <a href="#t12List directories"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> File[] listDirectories(String path) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> File(path).listFiles(File::isDirectory);
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h3 id="t13Read lines from file to string list">Read lines from file to string list <a href="#t13Read lines from file to string list"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> List&lt;String&gt; <span class="hljs-title">readLines</span><span class="hljs-params">(String filename)</span> <span class="hljs-keyword">throws</span> IOException </span>{
+        <span class="hljs-keyword">return</span> Files.readAllLines(<span class="hljs-keyword">new</span> File(filename).toPath());
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h2 id="t14Math">Math <a href="#t14Math"> # </a></h2>
+<h3 id="t15Fibonacci">Fibonacci <a href="#t15Fibonacci"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">fibonacci</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> n;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> fibonacci(n-<span class="hljs-number">1</span>) + fibonacci(n-<span class="hljs-number">2</span>);
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h3 id="t16Factorial">Factorial <a href="#t16Factorial"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">factorial</span><span class="hljs-params">(<span class="hljs-keyword">int</span> number)</span> </span>{
+        <span class="hljs-keyword">int</span> result = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> factor = <span class="hljs-number">2</span>; factor &lt;= number; factor++) {
+            result *= factor;
+        }
+        <span class="hljs-keyword">return</span> result;
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h2 id="t17Media">Media <a href="#t17Media"> # </a></h2>
+<h3 id="t18Capture screen">Capture screen <a href="#t18Capture screen"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">captureScreen</span><span class="hljs-params">(String filename)</span> <span class="hljs-keyword">throws</span> AWTException, IOException </span>{
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Rectangle screenRectangle = <span class="hljs-keyword">new</span> Rectangle(screenSize);
+        Robot robot = <span class="hljs-keyword">new</span> Robot();
+        BufferedImage image = robot.createScreenCapture(screenRectangle);
+        ImageIO.write(image, <span class="hljs-string">&quot;png&quot;</span>, <span class="hljs-keyword">new</span> File(filename));
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h2 id="t19String">String <a href="#t19String"> # </a></h2>
+<h3 id="t20Reverse string">Reverse string <a href="#t20Reverse string"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title">reverseString</span><span class="hljs-params">(String s)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> StringBuilder(s).reverse().toString();
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+<h3 id="t21String to date">String to date <a href="#t21String to date"> # </a></h3>
+<pre><code class="lang-java">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Date <span class="hljs-title">stringToDate</span><span class="hljs-params">(String date, String format)</span> <span class="hljs-keyword">throws</span> ParseException </span>{
+        SimpleDateFormat simpleDateFormat = <span class="hljs-keyword">new</span> SimpleDateFormat(format);
+        <span class="hljs-keyword">return</span> simpleDateFormat.parse(date);
+    }
+</code></pre>
+<p><a href="#table-of-contents">&#x2B06; back to top</a></p>
+
+        <div class="copyright">Powered by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a>. Dependence <a href="https://nodejs.org">Node.js</a> run.</div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>
