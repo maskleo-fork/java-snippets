@@ -4,8 +4,8 @@
  
 受启发于 [30 seconds of code](https://github.com/Chalarangelo/30-seconds-of-code), 这是一个可重用的经过测试的Java代码片段的集合。
 
-## How to contribute
-用代码片段更新示例应用程序并为其添加测试。 在证明它工作之后，更新这个README.md。
+## 如何贡献
+用代码片段更新示例应用程序,并为其添加测试。 在证明它正常运行之后，更新这个README.md。
 
 ## 目录
 
