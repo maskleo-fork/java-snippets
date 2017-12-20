@@ -1,36 +1,36 @@
 # Java Snippets
 
 [![Build status](https://travis-ci.org/iluwatar/java-snippets.svg?branch=master)](https://travis-ci.org/iluwatar/java-snippets)
-
-Inspired by [30 seconds of code](https://github.com/Chalarangelo/30-seconds-of-code), this is a collection of reusable tested Java code snippets.
+ 
+受启发于 [30 seconds of code](https://github.com/Chalarangelo/30-seconds-of-code), 这是一个可重用的经过测试的Java代码片段的集合。
 
 ## How to contribute
-Update the sample application with the snippet and add a test for it. After proving that it works update this README.md.
+用代码片段更新示例应用程序并为其添加测试。 在证明它工作之后，更新这个README.md。
 
-## Table of Contents
+## 目录
 
-### Array
-* [Generic two array concatenation](#generic-two-array-concatenation)
-* [Generic N array concatenation](#generic-N-array-concatenation)
+### 数组
+* [拼接2个泛型的数组](#拼接2个泛型的数组)
+* [拼接多个泛型的数组](#拼接多个泛型的数组)
 
-### File
-* [List directories](#list-directories)
-* [Read lines from file to string list](#read-lines-from-file-to-string-list)
+### 文件
+* [列出目录](#列出目录)
+* [从文件按行读取到字符串](#从文件按行读取到字符串)
 
-### Math
-* [Factorial](#factorial)
-* [Fibonacci](#fibonacci)
+### 数学
+* [阶乘](#阶乘)
+* [斐波那契](#斐波那契)
 
-### Media
-* [Capture screen](#capture-screen)
+### 多媒体
+* [截屏](#截屏)
 
-### String
-* [Reverse string](#reverse-string)
-* [String to date](#string-to-date)
+### 字符串
+* [反向字符串](#反向字符串)
+* [字符串转时间](#字符串转时间)
 
-## Array
+## 数组
 
-### Generic two array concatenation
+### 拼接2个泛型的数组
 
 ```java
     public static <T> T[] arrayConcat(T[] first, T[] second) {
@@ -40,9 +40,9 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-### Generic N array concatenation
+### 拼接多个泛型的数组
 
 ```java
     public static <T> T[] nArrayConcat(T[] first, T[]... rest) {
@@ -60,11 +60,11 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-## File
+## 文件
 
-### List directories
+### 列出目录
 
 ```java
     public static File[] listDirectories(String path) {
@@ -72,9 +72,9 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-### Read lines from file to string list
+### 从文件按行读取到字符串
 
 ```java
     public static List<String> readLines(String filename) throws IOException {
@@ -82,11 +82,11 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-## Math
-
-### Fibonacci
+## 数学
+ 
+### 阶乘
 
 ```java
     public static int fibonacci(int n) {
@@ -95,9 +95,9 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-### Factorial
+### 斐波那契
 
 ```java
     public static int factorial(int number) {
@@ -109,12 +109,12 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-## Media
-
-### Capture screen
-
+## 多媒体
+ 
+### 截屏
+ 
 ```java
     public static void captureScreen(String filename) throws AWTException, IOException {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -125,21 +125,21 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-## String
-
-### Reverse string
-
+## 字符串
+ 
+### 反向字符串
+ 
 ```java
     public static String reverseString(String s) {
         return new StringBuilder(s).reverse().toString();
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
 
-### String to date
+### 字符串转时间
 
 ```java
     public static Date stringToDate(String date, String format) throws ParseException {
@@ -148,4 +148,4 @@ Update the sample application with the snippet and add a test for it. After prov
     }
 ```
 
-[⬆ back to top](#table-of-contents)
+[⬆ 返回顶部](#目录)
