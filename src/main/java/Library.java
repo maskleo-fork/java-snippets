@@ -1,13 +1,14 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /*
  * Java Snippets code
@@ -191,5 +192,61 @@ public class Library {
         }
         Collections.shuffle(numbers);
         return numbers.subList(0, numbersToPick).toArray(new Integer[numbersToPick]);
+    }
+
+    /**
+     * Zip single file
+     * @param srcFilename the filename of the source file
+     * @param zipFilename the filename of the destination zip file
+     * @throws IOException
+     */
+    public static void zipFile(String srcFilename, String zipFilename) throws IOException {
+        File srcFile = new File(srcFilename);
+        try (
+            FileOutputStream fileOut = new FileOutputStream(zipFilename);
+            ZipOutputStream zipOut = new ZipOutputStream(fileOut);
+            FileInputStream fileIn = new FileInputStream(srcFile);
+        ) {
+            ZipEntry zipEntry = new ZipEntry(srcFile.getName());
+            zipOut.putNextEntry(zipEntry);
+            final byte[] bytes = new byte[1024];
+            int length;
+            while ((length = fileIn.read(bytes)) >= 0) {
+                zipOut.write(bytes, 0, length);
+            }
+        }
+    }
+
+    /**
+     * Sort an array with quicksort algorithm
+     * @param arr array to sort
+     * @param left left index where to begin sort (e.g. 0)
+     * @param right right index where to end sort (e.g. array length - 1)
+     */
+    public static void quickSort(int[] arr, int left, int right) {
+        int pivotIndex = left + (right - left) / 2;
+        int pivotValue = arr[pivotIndex];
+        int i = left, j = right;
+        while (i <= j) {
+            while (arr[i] < pivotValue) {
+                i++;
+            }
+            while (arr[j] > pivotValue) {
+                j--;
+            }
+            if (i <= j) {
+                int tmp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+                i++;
+                j--;
+            }
+            if (left < i) {
+                quickSort(arr, left, j);
+            }
+            if (right > i) {
+                quickSort(arr, i, right);
+            }
+        }
     }
 }
