@@ -25,6 +25,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -241,6 +244,32 @@ public class Library {
     }
 
     /**
+     * Zip multiples files
+     * @param srcFilenames array of source file names
+     * @param zipFilename the filename of the destination zip file
+     * @throws IOException
+     */
+    public static void zipFiles(String[] srcFilenames, String zipFilename) throws IOException {
+        try (
+            FileOutputStream fileOut = new FileOutputStream(zipFilename);
+            ZipOutputStream zipOut = new ZipOutputStream(fileOut);
+        ) {
+            for (int i=0; i<srcFilenames.length; i++) {
+                File srcFile = new File(srcFilenames[i]);
+                try (FileInputStream fileIn = new FileInputStream(srcFile)) {
+                    ZipEntry zipEntry = new ZipEntry(srcFile.getName());
+                    zipOut.putNextEntry(zipEntry);
+                    final byte[] bytes = new byte[1024];
+                    int length;
+                    while ((length = fileIn.read(bytes)) >= 0) {
+                        zipOut.write(bytes, 0, length);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Sort an array with quicksort algorithm
      * @param arr array to sort
      * @param left left index where to begin sort (e.g. 0)
@@ -271,5 +300,16 @@ public class Library {
                 quickSort(arr, i, right);
             }
         }
+    }
+
+    /**
+     * Performs HTTP GET request
+     * @param address the URL of the connection
+     * @return HTTP status code
+     * @throws IOException
+     */
+    public static int httpGet(URL address) throws IOException {
+        HttpURLConnection con = (HttpURLConnection) address.openConnection();
+        return con.getResponseCode();
     }
 }
