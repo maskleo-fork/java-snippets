@@ -1,5 +1,7 @@
 # Java Snippets
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/maskleo-fork/java-snippets.svg)](https://greenkeeper.io/)
+
 [![Build status](https://travis-ci.org/iluwatar/java-snippets.svg?branch=master)](https://travis-ci.org/iluwatar/java-snippets)
 
 Inspired by [30 seconds of code](https://github.com/Chalarangelo/30-seconds-of-code), this is a collection of reusable tested Java code snippets.
